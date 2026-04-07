@@ -120,7 +120,7 @@ export default async function BlogPostPage({ params }: Props) {
         {relatedPosts.length > 0 && (
           <section className="mt-16 pt-8 border-t border-[var(--border-color)]">
             <h2 className="text-xl font-bold font-mono text-[var(--text-primary)] mb-6">
-              <span className="text-[var(--accent)]">//</span> Related Posts
+              <span className="text-[var(--accent)]">{"// "}</span> Related Posts
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedPosts.map((rp) => (

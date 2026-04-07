@@ -89,7 +89,7 @@ export default async function AboutPage() {
         {/* Fun Facts */}
         <section className="py-16 text-center">
           <h2 className="text-2xl font-bold font-mono text-[var(--text-primary)] mb-8">
-            <span className="text-[var(--accent)]">//</span> When I&apos;m Not Hacking
+            <span className="text-[var(--accent)]">{"// "}</span> When I&apos;m Not Hacking
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
             {[

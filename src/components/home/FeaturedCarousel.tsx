@@ -35,7 +35,7 @@ export default function FeaturedCarousel({ projects }: FeaturedCarouselProps) {
         className="text-center mb-12"
       >
         <h2 className="text-3xl font-bold font-mono text-[var(--text-primary)] mb-4">
-          <span className="text-[var(--accent)]">//</span> Featured Projects
+          <span className="text-[var(--accent)]">{"// "}</span> Featured Projects
         </h2>
         <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
           Highlighted work spanning cybersecurity tools, web applications, and infrastructure automation.

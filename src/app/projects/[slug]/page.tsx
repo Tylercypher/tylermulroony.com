@@ -117,7 +117,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         {galleryUrls.length > 0 && (
           <section className="mb-12">
             <h2 className="text-xl font-bold font-mono text-[var(--text-primary)] mb-4">
-              <span className="text-[var(--accent)]">//</span> Screenshots
+              <span className="text-[var(--accent)]">{"// "}</span> Screenshots
             </h2>
             <ProjectGallery images={galleryUrls} title={project.title} />
           </section>

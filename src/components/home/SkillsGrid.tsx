@@ -56,7 +56,7 @@ export default function SkillsGrid() {
         className="text-center mb-12"
       >
         <h2 className="text-3xl font-bold font-mono text-[var(--text-primary)] mb-4">
-          <span className="text-[var(--accent)]">//</span> Skills & Services
+          <span className="text-[var(--accent)]">{"// "}</span> Skills & Services
         </h2>
         <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
           A comprehensive toolkit spanning offensive security, defensive operations, and modern software development.

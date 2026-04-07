@@ -42,7 +42,7 @@ export default async function ContactPage() {
           <div className="order-2 lg:order-1">
             <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-6 sm:p-8">
               <h2 className="text-xl font-bold font-mono text-[var(--text-primary)] mb-6">
-                <span className="text-[var(--accent)]">//</span> Send a Message
+                <span className="text-[var(--accent)]">{"// "}</span> Send a Message
               </h2>
               <ContactForm />
             </div>
@@ -52,7 +52,7 @@ export default async function ContactPage() {
           <div className="order-1 lg:order-2">
             <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-6 sm:p-8 sticky top-24">
               <h2 className="text-xl font-bold font-mono text-[var(--text-primary)] mb-6">
-                <span className="text-[var(--accent)]">//</span> Contact Info
+                <span className="text-[var(--accent)]">{"// "}</span> Contact Info
               </h2>
               <div className="space-y-6">
                 {contactInfo.email && (

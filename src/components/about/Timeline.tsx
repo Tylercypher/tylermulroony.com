@@ -45,7 +45,7 @@ export default function Timeline() {
   return (
     <section className="py-16">
       <h2 className="text-2xl font-bold font-mono text-[var(--text-primary)] mb-10 text-center">
-        <span className="text-[var(--accent)]">//</span> Career Journey
+        <span className="text-[var(--accent)]">{"// "}</span> Career Journey
       </h2>
       <div className="relative max-w-3xl mx-auto">
         {/* Vertical line */}

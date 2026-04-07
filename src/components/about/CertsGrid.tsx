@@ -23,7 +23,7 @@ export default function CertsGrid({ certifications }: CertsGridProps) {
   return (
     <section className="py-16">
       <h2 className="text-2xl font-bold font-mono text-[var(--text-primary)] mb-8 text-center">
-        <span className="text-[var(--accent)]">//</span> Certifications
+        <span className="text-[var(--accent)]">{"// "}</span> Certifications
       </h2>
       <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
         {certifications.map((cert, index) => (
