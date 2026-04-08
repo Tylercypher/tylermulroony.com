@@ -16,9 +16,15 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutPage() {
-  const settings = await prisma.siteSettings.findFirst({
-    where: { id: 'default' },
-  });
+  let settings: Awaited<ReturnType<typeof prisma.siteSettings.findFirst>> = null;
+
+  try {
+    settings = await prisma.siteSettings.findFirst({
+      where: { id: 'default' },
+    });
+  } catch {
+    // DB temporarily unavailable
+  }
 
   const certifications = parseJsonField<{ name: string; issuer: string; year: string }[]>(
     settings?.certifications || '[]',

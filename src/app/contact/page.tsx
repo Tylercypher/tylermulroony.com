@@ -14,9 +14,15 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage() {
-  const settings = await prisma.siteSettings.findFirst({
-    where: { id: 'default' },
-  });
+  let settings: Awaited<ReturnType<typeof prisma.siteSettings.findFirst>> = null;
+
+  try {
+    settings = await prisma.siteSettings.findFirst({
+      where: { id: 'default' },
+    });
+  } catch {
+    // DB temporarily unavailable
+  }
 
   const contactInfo = parseJsonField<{ email?: string; location?: string }>(
     settings?.contactInfo || '{}',

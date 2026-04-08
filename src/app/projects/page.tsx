@@ -11,10 +11,16 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsPage() {
-  const projects = await prisma.project.findMany({
-    where: { published: true },
-    orderBy: { createdAt: 'desc' },
-  });
+  let projects: Awaited<ReturnType<typeof prisma.project.findMany>> = [];
+
+  try {
+    projects = await prisma.project.findMany({
+      where: { published: true },
+      orderBy: { createdAt: 'desc' },
+    });
+  } catch {
+    // DB temporarily unavailable
+  }
 
   const categories = [...new Set(projects.map((p) => p.category))];
 

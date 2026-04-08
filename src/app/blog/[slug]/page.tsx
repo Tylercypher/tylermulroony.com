@@ -19,19 +19,23 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await prisma.blogPost.findUnique({ where: { slug: params.slug } });
-  if (!post) return { title: 'Post Not Found' };
-  return {
-    title: post.title,
-    description: post.excerpt,
-    openGraph: {
+  try {
+    const post = await prisma.blogPost.findUnique({ where: { slug: params.slug } });
+    if (!post) return { title: 'Post Not Found' };
+    return {
       title: post.title,
       description: post.excerpt,
-      type: 'article',
-      publishedTime: post.publishedAt?.toISOString(),
-      images: post.coverImageUrl ? [post.coverImageUrl] : undefined,
-    },
-  };
+      openGraph: {
+        title: post.title,
+        description: post.excerpt,
+        type: 'article',
+        publishedTime: post.publishedAt?.toISOString(),
+        images: post.coverImageUrl ? [post.coverImageUrl] : undefined,
+      },
+    };
+  } catch {
+    return { title: 'Blog Post' };
+  }
 }
 
 export default async function BlogPostPage({ params }: Props) {

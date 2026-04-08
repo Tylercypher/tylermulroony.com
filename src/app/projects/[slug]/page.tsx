@@ -18,12 +18,16 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = await prisma.project.findUnique({ where: { slug: params.slug } });
-  if (!project) return { title: 'Project Not Found' };
-  return {
-    title: project.title,
-    description: project.shortDesc,
-  };
+  try {
+    const project = await prisma.project.findUnique({ where: { slug: params.slug } });
+    if (!project) return { title: 'Project Not Found' };
+    return {
+      title: project.title,
+      description: project.shortDesc,
+    };
+  } catch {
+    return { title: 'Project' };
+  }
 }
 
 export default async function ProjectDetailPage({ params }: Props) {
