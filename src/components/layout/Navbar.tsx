@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu } from 'lucide-react';
+import { Menu, LogIn } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import MobileMenu from './MobileMenu';
 
@@ -66,8 +66,16 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <div className="ml-4">
+              <div className="ml-4 flex items-center gap-2">
                 <ThemeToggle />
+                <Link
+                  href="/admin"
+                  className="p-2 rounded-md text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
+                  aria-label="Admin login"
+                  title="Admin"
+                >
+                  <LogIn size={18} />
+                </Link>
               </div>
             </nav>
 
