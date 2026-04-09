@@ -41,7 +41,7 @@ export default function ParticleNetwork() {
     };
     resize();
 
-    const particleCount = isMobile ? 30 : 70;
+    const particleCount = isMobile ? 33 : 77;
     const connectionDistance = isMobile ? 100 : 150;
     const mouseRadius = 120;
 

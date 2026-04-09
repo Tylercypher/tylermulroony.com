@@ -10,7 +10,7 @@ interface HeroProps {
 }
 
 const titles = [
-  'Tyler Mulrooney',
+  'Tyler Mulroony',
   'Cybersecurity Professional',
   'Full-Stack Developer',
   'Problem Solver',
