@@ -33,12 +33,13 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="fixed inset-0 z-[100] bg-[var(--bg-primary)] flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-8">
+        <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-8 shadow-2xl">
           <div className="text-center mb-8">
+            <div className="text-4xl font-bold font-mono text-[var(--accent)] mb-4">T.M</div>
             <h1 className="text-2xl font-bold font-mono text-[var(--text-primary)]">
-              <span className="text-[var(--accent)]">&gt;</span> Admin Login
+              Admin Login
             </h1>
             <p className="text-sm text-[var(--text-muted)] mt-2 font-mono">
               Authentication required
