@@ -8,6 +8,7 @@ import PageTransition from '@/components/layout/PageTransition';
 
 export default async function HomePage() {
   let tagline = 'Securing systems. Building solutions. Breaking assumptions.';
+  let heroTitles: string[] = [];
   let featuredProjects: Awaited<ReturnType<typeof prisma.project.findMany>> = [];
 
   try {
@@ -15,6 +16,9 @@ export default async function HomePage() {
       where: { id: 'default' },
     });
     if (settings?.heroTagline) tagline = settings.heroTagline;
+    if (settings?.heroTitles) {
+      try { heroTitles = JSON.parse(settings.heroTitles); } catch {}
+    }
 
     featuredProjects = await prisma.project.findMany({
       where: { featured: true, published: true },
@@ -27,7 +31,7 @@ export default async function HomePage() {
 
   return (
     <PageTransition>
-      <Hero tagline={tagline} />
+      <Hero tagline={tagline} titles={heroTitles} />
       <SkillsGrid />
       <FeaturedCarousel projects={featuredProjects} />
     </PageTransition>

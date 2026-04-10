@@ -7,16 +7,18 @@ import ParticleNetwork from './ParticleNetwork';
 
 interface HeroProps {
   tagline: string;
+  titles?: string[];
 }
 
-const titles = [
+const defaultTitles = [
   'Tyler Mulroony',
   'Cybersecurity Professional',
   'Full-Stack Developer',
   'Problem Solver',
 ];
 
-export default function Hero({ tagline }: HeroProps) {
+export default function Hero({ tagline, titles: propTitles }: HeroProps) {
+  const titles = propTitles && propTitles.length > 0 ? propTitles : defaultTitles;
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);

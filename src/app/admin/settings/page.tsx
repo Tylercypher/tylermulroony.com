@@ -8,6 +8,7 @@ import Select from '@/components/ui/Select';
 
 interface SiteSettings {
   heroTagline: string;
+  heroTitles: string;
   aboutBio: string;
   certifications: string;
   resumeUrl: string | null;
@@ -24,6 +25,7 @@ export default function AdminSettingsPage() {
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const [form, setForm] = useState({
     heroTagline: '',
+    heroTitles: '',
     aboutBio: '',
     certifications: '',
     resumeUrl: '',
@@ -70,8 +72,16 @@ export default function AdminSettingsPage() {
           } catch { return data.contactPageSubjects || '[]'; }
         })();
 
+        const titlesStr = (() => {
+          try {
+            const parsed = JSON.parse(data.heroTitles || '[]');
+            return JSON.stringify(parsed, null, 2);
+          } catch { return data.heroTitles || '[]'; }
+        })();
+
         setForm({
           heroTagline: data.heroTagline,
+          heroTitles: titlesStr,
           aboutBio: data.aboutBio,
           certifications: certs,
           resumeUrl: data.resumeUrl || '',
@@ -111,6 +121,7 @@ export default function AdminSettingsPage() {
 
     const body = {
       heroTagline: form.heroTagline,
+      heroTitles: form.heroTitles,
       aboutBio: form.aboutBio,
       certifications: form.certifications,
       resumeUrl: form.resumeUrl || null,
@@ -152,6 +163,20 @@ export default function AdminSettingsPage() {
           <h2 className="text-lg font-mono font-semibold text-[var(--text-primary)] border-b border-[var(--border-color)] pb-2">
             Hero Section
           </h2>
+          <div>
+            <label className="block text-sm font-mono text-[var(--text-secondary)] mb-1">
+              Rotating Titles (JSON array of strings)
+            </label>
+            <p className="text-xs text-[var(--text-muted)] mb-2">
+              These cycle in the typing animation on the home page (e.g. your name, job titles)
+            </p>
+            <Textarea
+              value={form.heroTitles}
+              onChange={(e) => setForm({ ...form, heroTitles: e.target.value })}
+              rows={5}
+              className="font-mono text-xs"
+            />
+          </div>
           <div>
             <label className="block text-sm font-mono text-[var(--text-secondary)] mb-1">Tagline</label>
             <Input value={form.heroTagline} onChange={(e) => setForm({ ...form, heroTagline: e.target.value })} />
