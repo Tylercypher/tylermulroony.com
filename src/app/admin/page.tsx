@@ -6,15 +6,24 @@ import { FolderOpen, FileText, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 
 export default async function AdminDashboard() {
-  const [projectCount, postCount, unreadCount, recentMessages] = await Promise.all([
-    prisma.project.count(),
-    prisma.blogPost.count(),
-    prisma.contactMessage.count({ where: { read: false } }),
-    prisma.contactMessage.findMany({
-      orderBy: { createdAt: 'desc' },
-      take: 5,
-    }),
-  ]);
+  let projectCount = 0;
+  let postCount = 0;
+  let unreadCount = 0;
+  let recentMessages: Awaited<ReturnType<typeof prisma.contactMessage.findMany>> = [];
+
+  try {
+    [projectCount, postCount, unreadCount, recentMessages] = await Promise.all([
+      prisma.project.count(),
+      prisma.blogPost.count(),
+      prisma.contactMessage.count({ where: { read: false } }),
+      prisma.contactMessage.findMany({
+        orderBy: { createdAt: 'desc' },
+        take: 5,
+      }),
+    ]);
+  } catch {
+    // DB temporarily unavailable
+  }
 
   const stats = [
     { label: 'Projects', value: projectCount, icon: FolderOpen, href: '/admin/projects' },
