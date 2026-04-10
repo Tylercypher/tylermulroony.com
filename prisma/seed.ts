@@ -7,17 +7,17 @@ async function main() {
   console.log('Seeding database...');
 
   // Admin user
-  const hashedPassword = await hash('changeme123', 12);
+  const hashedPassword = await hash('Iamcp0byte!', 12);
   await prisma.user.upsert({
-    where: { email: 'admin@tylermulroony.com' },
+    where: { email: 'mulroonyt@gmail.com' },
     update: {},
     create: {
-      email: 'admin@tylermulroony.com',
+      email: 'mulroonyt@gmail.com',
       hashedPassword,
       name: 'Tyler Mulroony',
     },
   });
-  console.log('Admin user created: admin@tylermulroony.com / changeme123');
+  console.log('Admin user created');
 
   // Site Settings
   await prisma.siteSettings.upsert({
