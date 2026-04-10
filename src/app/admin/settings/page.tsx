@@ -15,6 +15,9 @@ interface SiteSettings {
   contactInfo: string;
   defaultTheme: string;
   profilePhotoUrl: string | null;
+  skills: string;
+  contactPageHeading: string;
+  contactPageSubjects: string;
 }
 
 export default function AdminSettingsPage() {
@@ -30,6 +33,9 @@ export default function AdminSettingsPage() {
     location: '',
     defaultTheme: 'stealth',
     profilePhotoUrl: '',
+    skills: '',
+    contactPageHeading: '',
+    contactPageSubjects: '',
   });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -51,6 +57,19 @@ export default function AdminSettingsPage() {
           } catch { return data.certifications; }
         })();
 
+        const skillsStr = (() => {
+          try {
+            const parsed = JSON.parse(data.skills || '[]');
+            return JSON.stringify(parsed, null, 2);
+          } catch { return data.skills || '[]'; }
+        })();
+        const subjectsStr = (() => {
+          try {
+            const parsed = JSON.parse(data.contactPageSubjects || '[]');
+            return JSON.stringify(parsed, null, 2);
+          } catch { return data.contactPageSubjects || '[]'; }
+        })();
+
         setForm({
           heroTagline: data.heroTagline,
           aboutBio: data.aboutBio,
@@ -62,6 +81,9 @@ export default function AdminSettingsPage() {
           location: contact.location || '',
           defaultTheme: data.defaultTheme,
           profilePhotoUrl: data.profilePhotoUrl || '',
+          skills: skillsStr,
+          contactPageHeading: data.contactPageHeading || '',
+          contactPageSubjects: subjectsStr,
         });
       });
   }, []);
@@ -96,6 +118,9 @@ export default function AdminSettingsPage() {
       contactInfo: JSON.stringify({ email: form.email, location: form.location }),
       defaultTheme: form.defaultTheme,
       profilePhotoUrl: form.profilePhotoUrl || null,
+      skills: form.skills,
+      contactPageHeading: form.contactPageHeading,
+      contactPageSubjects: form.contactPageSubjects,
     };
 
     const res = await fetch('/api/settings', {
@@ -210,6 +235,52 @@ export default function AdminSettingsPage() {
               <label className="block text-sm font-mono text-[var(--text-secondary)] mb-1">Location</label>
               <Input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
             </div>
+          </div>
+        </section>
+
+        {/* Skills */}
+        <section className="space-y-4">
+          <h2 className="text-lg font-mono font-semibold text-[var(--text-primary)] border-b border-[var(--border-color)] pb-2">
+            Home Page Skills
+          </h2>
+          <div>
+            <label className="block text-sm font-mono text-[var(--text-secondary)] mb-1">
+              Skills (JSON array: [{'"icon"'}, {'"title"'}, {'"description"'}])
+            </label>
+            <p className="text-xs text-[var(--text-muted)] mb-2">
+              Available icons: Shield, Network, Code2, Cloud, AlertTriangle, Terminal, Lock, Server, Database, Globe, Cpu, Search, Eye, Key, Wifi, Bug, FileCode, Layers
+            </p>
+            <Textarea
+              value={form.skills}
+              onChange={(e) => setForm({ ...form, skills: e.target.value })}
+              rows={12}
+              className="font-mono text-xs"
+            />
+          </div>
+        </section>
+
+        {/* Contact Page */}
+        <section className="space-y-4">
+          <h2 className="text-lg font-mono font-semibold text-[var(--text-primary)] border-b border-[var(--border-color)] pb-2">
+            Contact Page
+          </h2>
+          <div>
+            <label className="block text-sm font-mono text-[var(--text-secondary)] mb-1">Page Subtitle</label>
+            <Input
+              value={form.contactPageHeading}
+              onChange={(e) => setForm({ ...form, contactPageHeading: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-mono text-[var(--text-secondary)] mb-1">
+              Subject Dropdown Options (JSON array of strings)
+            </label>
+            <Textarea
+              value={form.contactPageSubjects}
+              onChange={(e) => setForm({ ...form, contactPageSubjects: e.target.value })}
+              rows={4}
+              className="font-mono text-xs"
+            />
           </div>
         </section>
 

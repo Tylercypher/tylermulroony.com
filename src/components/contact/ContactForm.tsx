@@ -14,7 +14,14 @@ interface FormErrors {
   message?: string;
 }
 
-export default function ContactForm() {
+interface ContactFormProps {
+  subjects?: string[];
+}
+
+const defaultSubjects = ['General Inquiry', 'Project Collaboration', 'Job Opportunity', 'Security Consultation', 'Other'];
+
+export default function ContactForm({ subjects }: ContactFormProps) {
+  const subjectOptions = subjects && subjects.length > 0 ? subjects : defaultSubjects;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -127,11 +134,9 @@ export default function ContactForm() {
           onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
         >
           <option value="">Select a subject...</option>
-          <option value="General Inquiry">General Inquiry</option>
-          <option value="Project Collaboration">Project Collaboration</option>
-          <option value="Job Opportunity">Job Opportunity</option>
-          <option value="Security Consultation">Security Consultation</option>
-          <option value="Other">Other</option>
+          {subjectOptions.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
         </Select>
         {errors.subject && <p className="text-red-500 text-xs mt-1 font-mono">{errors.subject}</p>}
       </div>

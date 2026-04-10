@@ -32,6 +32,8 @@ export default async function ContactPage() {
     settings?.socialLinks || '{}',
     {}
   );
+  const contactHeading = settings?.contactPageHeading || "Have a project in mind, a security concern, or just want to connect? Let's talk.";
+  const subjects = parseJsonField<string[]>(settings?.contactPageSubjects || '[]', []);
 
   return (
     <PageTransition>
@@ -41,7 +43,7 @@ export default async function ContactPage() {
             <span className="text-[var(--accent)]">&gt;</span> Contact
           </h1>
           <p className="text-[var(--text-secondary)] max-w-2xl mx-auto">
-            Have a project in mind, a security concern, or just want to connect? Let&apos;s talk.
+            {contactHeading}
           </p>
         </div>
 
@@ -52,7 +54,7 @@ export default async function ContactPage() {
               <h2 className="text-xl font-bold font-mono text-[var(--text-primary)] mb-6">
                 <span className="text-[var(--accent)]">{"// "}</span> Send a Message
               </h2>
-              <ContactForm />
+              <ContactForm subjects={subjects} />
             </div>
           </div>
 
