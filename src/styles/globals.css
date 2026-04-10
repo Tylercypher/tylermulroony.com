@@ -104,21 +104,6 @@ body {
   background: var(--accent);
 }
 
-/* ===== CUSTOM CURSOR ===== */
-@media (pointer: fine) {
-  [data-custom-cursor="true"] {
-    cursor: none;
-  }
-
-  [data-custom-cursor="true"] a,
-  [data-custom-cursor="true"] button,
-  [data-custom-cursor="true"] input,
-  [data-custom-cursor="true"] textarea,
-  [data-custom-cursor="true"] select {
-    cursor: none;
-  }
-}
-
 /* ===== SCANLINE EFFECT (Neon mode) ===== */
 .scanline-overlay {
   position: fixed;

@@ -3,7 +3,6 @@ import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import BackgroundEffect from '@/components/layout/BackgroundEffect';
-import CustomCursor from '@/components/layout/CustomCursor';
 
 export const metadata: Metadata = {
   title: {
@@ -51,7 +50,6 @@ export default function RootLayout({
     <html lang="en" data-theme="stealth" suppressHydrationWarning>
       <body className="min-h-screen antialiased">
         <BackgroundEffect />
-        <CustomCursor />
         <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-1 pt-16">{children}</main>

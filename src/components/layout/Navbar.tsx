@@ -69,7 +69,7 @@ export default function Navbar() {
               <div className="ml-4 flex items-center gap-2">
                 <ThemeToggle />
                 <Link
-                  href="/admin"
+                  href="/admin/login"
                   className="p-2 rounded-md text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
                   aria-label="Admin login"
                   title="Admin"
