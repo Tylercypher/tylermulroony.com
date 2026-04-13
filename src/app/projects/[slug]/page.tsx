@@ -115,7 +115,7 @@ export default async function ProjectDetailPage({ params }: Props) {
 
         {/* Full description */}
         <div
-          className="prose prose-invert max-w-none text-[var(--text-secondary)] leading-relaxed mb-12"
+          className="prose prose-invert max-w-none leading-relaxed mb-12 prose-p:text-[var(--text-primary)] prose-li:text-[var(--text-primary)] prose-strong:text-[var(--text-primary)] prose-headings:text-[var(--text-primary)] prose-a:text-[var(--accent)] prose-a:no-underline hover:prose-a:underline"
           dangerouslySetInnerHTML={{ __html: project.fullDesc }}
         />
 
