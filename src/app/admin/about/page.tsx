@@ -19,9 +19,60 @@ interface FunFact {
   detail: string;
 }
 
+const defaultTimeline: TimelineEntry[] = [
+  {
+    year: '2025 – Present',
+    title: 'Junior Systems Administrator',
+    company: 'Strategic Micro Systems',
+    location: 'New Jersey',
+    bullets: [
+      'Administer M365, Intune, and Azure AD / Entra ID across multiple client tenants — handling user lifecycle, device compliance, and Conditional Access.',
+      'Manage Windows Server environments (AD, DNS, DHCP, GPO) and implement MFA, email security, and EDR/AV solutions.',
+      'Utilize ConnectWise and NinjaRMM for RMM, patch management, ticketing, and backup/disaster recovery operations.',
+    ],
+  },
+  {
+    year: 'May 2025 – Sep 2025',
+    title: 'Junior SysAdmin',
+    company: 'MTP',
+    location: 'Whippany, NJ',
+    bullets: [
+      'Deployed and configured endpoints for end users, managed IT inventory, and performed system maintenance and patch management.',
+      'Supported on-site and remote clients through ticketing systems, structured cabling, and network configuration projects.',
+    ],
+  },
+  {
+    year: 'Oct 2024 – Present (Part-Time)',
+    title: 'IT Technician',
+    company: 'PC Visions',
+    location: 'Old Bridge, NJ',
+    bullets: [
+      'Diagnose, repair, and maintain computers, security cameras, and network infrastructure for local clients.',
+      'Hardware troubleshooting, device hardening, and system optimization including PC builds and component installations.',
+    ],
+  },
+  {
+    year: '2021 – Present',
+    title: 'Technician',
+    company: 'Passaic County Superintendent of Elections',
+    location: 'New Jersey',
+    bullets: [
+      'Support election system operations including ESS software, networked poll books, and Wi-Fi modules, ensuring integrity and uptime.',
+      'Provide on-site technical support during Election Day to ensure secure, compliant, and efficient system operation.',
+    ],
+  },
+];
+
+const defaultFunFacts: FunFact[] = [
+  { label: 'CTF Competitions', detail: 'Competing and learning in capture-the-flag events' },
+  { label: 'Home Lab', detail: 'Running a self-hosted security research environment' },
+  { label: 'Open Source', detail: 'Contributing to security tools and frameworks' },
+];
+
 export default function AdminAboutPage() {
-  const [timeline, setTimeline] = useState<TimelineEntry[]>([]);
-  const [funFacts, setFunFacts] = useState<FunFact[]>([]);
+  const [aboutBio, setAboutBio] = useState('');
+  const [timeline, setTimeline] = useState<TimelineEntry[]>(defaultTimeline);
+  const [funFacts, setFunFacts] = useState<FunFact[]>(defaultFunFacts);
   const [funFactsHeading, setFunFactsHeading] = useState("When I'm Not Working");
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -31,7 +82,11 @@ export default function AdminAboutPage() {
     fetch('/api/settings')
       .then((r) => r.json())
       .then((data) => {
-        if (!data) return;
+        if (!data) {
+          setLoading(false);
+          return;
+        }
+        if (data.aboutBio) setAboutBio(data.aboutBio);
         try {
           const parsed = JSON.parse(data.careerTimeline || '[]');
           if (parsed.length > 0) setTimeline(parsed);
@@ -53,6 +108,7 @@ export default function AdminAboutPage() {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        aboutBio,
         careerTimeline: JSON.stringify(timeline),
         funFacts: JSON.stringify(funFacts),
         funFactsHeading,
@@ -141,6 +197,27 @@ export default function AdminAboutPage() {
       </h1>
 
       <form onSubmit={handleSubmit} className="space-y-10 max-w-3xl">
+        {/* About Me Bio */}
+        <section className="space-y-4">
+          <h2 className="text-lg font-mono font-semibold text-[var(--text-primary)] border-b border-[var(--border-color)] pb-2">
+            About Me
+          </h2>
+          <div>
+            <label className="block text-sm font-mono text-[var(--text-secondary)] mb-1">
+              Bio (HTML supported)
+            </label>
+            <p className="text-xs text-[var(--text-muted)] mb-2">
+              This is the main paragraph on the About page. Wrap paragraphs in &lt;p&gt; tags.
+            </p>
+            <Textarea
+              value={aboutBio}
+              onChange={(e) => setAboutBio(e.target.value)}
+              rows={8}
+              placeholder="<p>Write about yourself here...</p>"
+            />
+          </div>
+        </section>
+
         {/* Career Timeline */}
         <section className="space-y-4">
           <div className="flex items-center justify-between border-b border-[var(--border-color)] pb-2">
