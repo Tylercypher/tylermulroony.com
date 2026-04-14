@@ -18,12 +18,9 @@ const timelineData: TimelineItem[] = [
     company: 'Strategic Micro Systems',
     location: 'New Jersey',
     bullets: [
-      'Administer Microsoft 365 across multiple client tenants — user lifecycle, licensing, Exchange Online, SharePoint, OneDrive, and Azure AD / Entra ID.',
-      'Deploy and manage Intune (MDM/MAM) for device compliance, configuration profiles, and Conditional Access policy enforcement across client endpoints.',
-      'Implement MFA, email security (anti-phishing, spam filtering), and EDR/AV solutions to reduce client attack surface and strengthen overall security posture.',
-      'Manage Windows Server environments including Active Directory, DNS, DHCP, and Group Policy across multi-client infrastructure.',
-      'Oversee backup and disaster recovery operations to ensure business continuity and RPO/RTO compliance for clients.',
-      'Utilize ConnectWise and NinjaRMM for RMM, patch management, ticketing, VPN support, and client onboarding documentation.',
+      'Administer M365, Intune, and Azure AD / Entra ID across multiple client tenants — handling user lifecycle, device compliance, and Conditional Access.',
+      'Manage Windows Server environments (AD, DNS, DHCP, GPO) and implement MFA, email security, and EDR/AV solutions.',
+      'Utilize ConnectWise and NinjaRMM for RMM, patch management, ticketing, and backup/disaster recovery operations.',
     ],
   },
   {
@@ -32,12 +29,8 @@ const timelineData: TimelineItem[] = [
     company: 'MTP',
     location: 'Whippany, NJ',
     bullets: [
-      'Deployed and configured new computers and software for end users, ensuring secure and efficient onboarding with minimal downtime.',
-      'Managed IT inventory, hardware, and software assets to maintain accurate tracking for compliance and risk visibility.',
-      'Performed system maintenance and patch management to mitigate vulnerabilities and enhance operational security.',
-      'Supported both on-site and remote clients by resolving technical issues, escalating critical incidents when necessary.',
-      'Assisted in structured cabling, wiring, and system configuration projects to support network reliability and scalability.',
-      'Utilized ticketing systems to log, prioritize, and track issues, ensuring timely resolution and adherence to internal SLAs.',
+      'Deployed and configured endpoints for end users, managed IT inventory, and performed system maintenance and patch management.',
+      'Supported on-site and remote clients through ticketing systems, structured cabling, and network configuration projects.',
     ],
   },
   {
@@ -46,11 +39,18 @@ const timelineData: TimelineItem[] = [
     company: 'PC Visions',
     location: 'Old Bridge, NJ',
     bullets: [
-      'Diagnose, repair, and maintain computers, IT systems, security cameras, and network infrastructure for local clients.',
-      'Hands-on hardware troubleshooting, software installations, network configurations, and endpoint security management.',
-      'Contribute to improving system stability through proper device hardening, updates, and configuration management.',
-      'Document system performance issues and resolutions to improve operational risk tracking and prevent recurrence.',
-      'Expand technical skills in PC building, component installation, and system optimization.',
+      'Diagnose, repair, and maintain computers, security cameras, and network infrastructure for local clients.',
+      'Hardware troubleshooting, device hardening, and system optimization including PC builds and component installations.',
+    ],
+  },
+  {
+    year: '2021 – Present',
+    title: 'Technician',
+    company: 'Passaic County Superintendent of Elections',
+    location: 'New Jersey',
+    bullets: [
+      'Support election system operations including ESS software, networked poll books, and Wi-Fi modules, ensuring integrity and uptime.',
+      'Provide on-site technical support during Election Day to ensure secure, compliant, and efficient system operation.',
     ],
   },
 ];
