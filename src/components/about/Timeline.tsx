@@ -11,7 +11,11 @@ interface TimelineItem {
   bullets: string[];
 }
 
-const timelineData: TimelineItem[] = [
+interface TimelineProps {
+  items?: TimelineItem[];
+}
+
+const fallbackData: TimelineItem[] = [
   {
     year: '2025 – Present',
     title: 'Junior Systems Administrator',
@@ -55,7 +59,9 @@ const timelineData: TimelineItem[] = [
   },
 ];
 
-export default function Timeline() {
+export default function Timeline({ items }: TimelineProps) {
+  const timelineData = items && items.length > 0 ? items : fallbackData;
+
   return (
     <section className="py-16">
       <h2 className="text-2xl font-bold font-mono text-[var(--text-primary)] mb-10 text-center">
@@ -116,7 +122,7 @@ function TimelineNode({ item, index }: { item: TimelineItem; index: number }) {
         <ul className={`mt-3 space-y-2 ${isLeft ? 'md:text-right' : ''}`}>
           {item.bullets.map((bullet, i) => (
             <li key={i} className="text-sm text-[var(--text-primary)] leading-relaxed flex gap-2 items-start">
-              <span className={`text-[var(--accent)] mt-1 flex-shrink-0 ${isLeft ? 'md:order-last' : ''}`}>▹</span>
+              <span className={`text-[var(--accent)] mt-1 flex-shrink-0 ${isLeft ? 'md:order-last' : ''}`}>&#9657;</span>
               <span>{bullet}</span>
             </li>
           ))}

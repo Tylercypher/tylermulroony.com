@@ -73,4 +73,7 @@ model SiteSettings {
   skills              String  @default("[]")  // JSON array of {icon, title, description}
   contactPageHeading  String  @default("Have a project in mind, a security concern, or just want to connect? Let's talk.")
   contactPageSubjects String  @default("[]")  // JSON array of subject dropdown options
+  careerTimeline      String  @default("[]")  // JSON array of {year, title, company, location, bullets[]}
+  funFacts            String  @default("[]")  // JSON array of {label, detail}
+  funFactsHeading     String  @default("When I'm Not Working")
 }

@@ -12,7 +12,7 @@ import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Learn about Tyler Mulroony — cybersecurity professional and full-stack developer.',
+  description: 'Learn about Tyler Mulroony — systems administrator and full-stack developer.',
 };
 
 export default async function AboutPage() {
@@ -32,6 +32,17 @@ export default async function AboutPage() {
   );
 
   const contactInfo = parseJsonField<{ location?: string }>(settings?.contactInfo || '{}', {});
+
+  const careerTimeline = parseJsonField<
+    { year: string; title: string; company: string; location: string; bullets: string[] }[]
+  >(settings?.careerTimeline || '[]', []);
+
+  const funFacts = parseJsonField<{ label: string; detail: string }[]>(
+    settings?.funFacts || '[]',
+    []
+  );
+
+  const funFactsHeading = settings?.funFactsHeading || "When I'm Not Working";
 
   return (
     <PageTransition>
@@ -71,9 +82,7 @@ export default async function AboutPage() {
               className="text-[var(--text-secondary)] leading-relaxed space-y-4 prose-invert max-w-none"
               dangerouslySetInnerHTML={{
                 __html: settings?.aboutBio || `
-                  <p>I'm a cybersecurity professional and full-stack developer with a passion for building secure systems and breaking insecure ones. My career spans penetration testing, network security architecture, incident response, and modern web development.</p>
-                  <p>I believe that understanding how to build software makes you better at breaking it — and vice versa. This dual perspective drives everything I do, from designing secure applications to conducting thorough security assessments.</p>
-                  <p>When I'm not hunting vulnerabilities or writing code, you'll find me contributing to open-source security tools, writing about emerging threats, and mentoring the next generation of cybersecurity professionals.</p>
+                  <p>I'm a systems administrator and full-stack developer with a passion for building secure, scalable infrastructure and modern web applications.</p>
                 `,
               }}
             />
@@ -89,32 +98,37 @@ export default async function AboutPage() {
         </section>
 
         {/* Timeline */}
-        <Timeline />
+        <Timeline items={careerTimeline} />
 
         {/* Certifications */}
         <CertsGrid certifications={certifications} />
 
-        {/* Fun Facts */}
-        <section className="py-16 text-center">
-          <h2 className="text-2xl font-bold font-mono text-[var(--text-primary)] mb-8">
-            <span className="text-[var(--accent)]">{"// "}</span> When I&apos;m Not Hacking
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            {[
-              { label: 'CTF Competitions', detail: 'Competing and learning in capture-the-flag events' },
-              { label: 'Home Lab', detail: 'Running a self-hosted security research environment' },
-              { label: 'Open Source', detail: 'Contributing to security tools and frameworks' },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="p-6 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)]"
-              >
-                <h3 className="font-mono font-semibold text-[var(--accent)] mb-2">{item.label}</h3>
-                <p className="text-sm text-[var(--text-secondary)]">{item.detail}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Fun Facts / Interests */}
+        {(funFacts.length > 0 || !settings?.funFacts) && (
+          <section className="py-16 text-center">
+            <h2 className="text-2xl font-bold font-mono text-[var(--text-primary)] mb-8">
+              <span className="text-[var(--accent)]">{"// "}</span> {funFactsHeading}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+              {(funFacts.length > 0
+                ? funFacts
+                : [
+                    { label: 'CTF Competitions', detail: 'Competing and learning in capture-the-flag events' },
+                    { label: 'Home Lab', detail: 'Running a self-hosted security research environment' },
+                    { label: 'Open Source', detail: 'Contributing to security tools and frameworks' },
+                  ]
+              ).map((item) => (
+                <div
+                  key={item.label}
+                  className="p-6 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)]"
+                >
+                  <h3 className="font-mono font-semibold text-[var(--accent)] mb-2">{item.label}</h3>
+                  <p className="text-sm text-[var(--text-secondary)]">{item.detail}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </PageTransition>
   );
