@@ -12,7 +12,7 @@ import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Learn about Tyler Mulroony — systems administrator, aspiring AI enthusiast, and lifelong learner.',
+  description: 'Learn about Tyler Mulroony — systems administrator and full-stack developer.',
 };
 
 export default async function AboutPage() {
@@ -115,9 +115,9 @@ export default async function AboutPage() {
               {(funFacts.length > 0
                 ? funFacts
                 : [
-                    { label: 'AI & Automation', detail: 'Exploring how AI tools like Claude can streamline IT operations and development' },
-                    { label: 'Continuous Learning', detail: 'Always studying for the next cert, building projects, and pushing into new technologies' },
-                    { label: 'Home Lab', detail: 'Running a self-hosted environment for security research, testing, and hands-on learning' },
+                    { label: 'CTF Competitions', detail: 'Competing and learning in capture-the-flag events' },
+                    { label: 'Home Lab', detail: 'Running a self-hosted security research environment' },
+                    { label: 'Open Source', detail: 'Contributing to security tools and frameworks' },
                   ]
               ).map((item) => (
                 <div
