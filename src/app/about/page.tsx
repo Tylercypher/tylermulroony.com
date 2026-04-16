@@ -81,7 +81,7 @@ export default async function AboutPage() {
             <div
               className="text-[var(--text-secondary)] leading-relaxed space-y-4 prose-invert max-w-none"
               dangerouslySetInnerHTML={{
-                __html: `
+                __html: settings?.aboutBio || `
                   <p>I'm a Junior Systems Administrator at Strategic Micro Systems, where I manage M365, Intune, Azure AD / Entra ID, Windows Server environments, and security tooling across multiple client tenants. Every day brings a different challenge — and that's exactly what I love about this field.</p>
                   <p>I'm driven by a constant desire to learn. Whether it's studying for my next certification, spinning up something new in my home lab, or diving into a CTF competition, I'm always looking for the next thing to get better at. Lately, I've been especially drawn to AI and how it's reshaping IT operations, security, and development workflows. I'm actively exploring tools like Claude, building projects that integrate AI, and finding ways to bring that into my day-to-day work.</p>
                 `,
