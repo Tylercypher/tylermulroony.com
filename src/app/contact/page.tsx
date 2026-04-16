@@ -121,13 +121,6 @@ export default async function ContactPage() {
                   </div>
                 )}
               </div>
-
-              {/* Terminal decoration */}
-              <div className="mt-8 p-4 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-color)] font-mono text-xs">
-                <p className="text-[var(--text-muted)]">$ ping tylermulroony.com</p>
-                <p className="text-[var(--accent)] mt-1">PONG — Response time: &lt;24h</p>
-                <p className="text-[var(--text-muted)] mt-1">$ _</p>
-              </div>
             </div>
           </div>
         </div>
