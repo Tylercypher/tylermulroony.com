@@ -64,9 +64,9 @@ const defaultTimeline: TimelineEntry[] = [
 ];
 
 const defaultFunFacts: FunFact[] = [
-  { label: 'CTF Competitions', detail: 'Competing and learning in capture-the-flag events' },
-  { label: 'Home Lab', detail: 'Running a self-hosted security research environment' },
-  { label: 'Open Source', detail: 'Contributing to security tools and frameworks' },
+  { label: 'AI & Automation', detail: 'Exploring how AI tools like Claude can streamline IT operations and development' },
+  { label: 'Continuous Learning', detail: 'Always studying for the next cert, building projects, and pushing into new technologies' },
+  { label: 'Home Lab', detail: 'Running a self-hosted environment for security research, testing, and hands-on learning' },
 ];
 
 export default function AdminAboutPage() {

@@ -12,7 +12,7 @@ import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Learn about Tyler Mulroony — systems administrator and full-stack developer.',
+  description: 'Learn about Tyler Mulroony — systems administrator, aspiring AI enthusiast, and lifelong learner.',
 };
 
 export default async function AboutPage() {
@@ -82,7 +82,9 @@ export default async function AboutPage() {
               className="text-[var(--text-secondary)] leading-relaxed space-y-4 prose-invert max-w-none"
               dangerouslySetInnerHTML={{
                 __html: settings?.aboutBio || `
-                  <p>I'm a systems administrator and full-stack developer with a passion for building secure, scalable infrastructure and modern web applications.</p>
+                  <p>I'm a Junior Systems Administrator at Strategic Micro Systems, where I manage M365, Intune, Azure AD / Entra ID, Windows Server environments, and security tooling across multiple client tenants. Every day brings a different challenge — and that's exactly what I love about this field.</p>
+                  <p>I'm driven by a constant desire to learn. Whether it's studying for my next certification, spinning up something new in my home lab, or diving into a CTF competition, I'm always looking for the next thing to get better at. Lately, I've been especially drawn to AI and how it's reshaping IT operations, security, and development workflows. I'm actively exploring tools like Claude, building projects that integrate AI, and finding ways to bring that into my day-to-day work.</p>
+                  <p>I also build full-stack web apps — like this site — to sharpen my development skills and stay creative outside of infrastructure work.</p>
                 `,
               }}
             />
@@ -113,9 +115,9 @@ export default async function AboutPage() {
               {(funFacts.length > 0
                 ? funFacts
                 : [
-                    { label: 'CTF Competitions', detail: 'Competing and learning in capture-the-flag events' },
-                    { label: 'Home Lab', detail: 'Running a self-hosted security research environment' },
-                    { label: 'Open Source', detail: 'Contributing to security tools and frameworks' },
+                    { label: 'AI & Automation', detail: 'Exploring how AI tools like Claude can streamline IT operations and development' },
+                    { label: 'Continuous Learning', detail: 'Always studying for the next cert, building projects, and pushing into new technologies' },
+                    { label: 'Home Lab', detail: 'Running a self-hosted environment for security research, testing, and hands-on learning' },
                   ]
               ).map((item) => (
                 <div
